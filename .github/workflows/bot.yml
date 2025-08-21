@@ -1,0 +1,29 @@
+# .github/workflows/bot.yml
+name: Doctor Bot (every 10 min)
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"   # каждые 10 минут (UTC)
+  workflow_dispatch:         # запуск вручную из вкладки Actions
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run single check
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+        run: python github_runner.py
