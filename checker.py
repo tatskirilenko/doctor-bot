@@ -6,8 +6,8 @@ from telegram import Bot
 
 # ----- РЕДАКТИРУЙ ТУТ СПИСОК ВРАЧЕЙ -----
 DOCTORS = [
-    {"surname": "Дегтярёв", "usluga": 22},
-    # {"surname": "Иванова", "usluga": 33},
+    {"surname": "Серик", "usluga": 46},
+    {"surname": "Кожедуб", "usluga": 46},
     # {"surname": "Сидоров", "usluga": 44},
 ]
 
