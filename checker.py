@@ -16,7 +16,7 @@ BASE_URL = "https://z-api-lode.vot.by/getAllData"
 def _iso_range_utc_60d():
     now = datetime.utcnow()
     start = now.isoformat(timespec="milliseconds") + "Z"
-    end = (now + timedelta(days=4)).replace(
+    end = (now + timedelta(days=60)).replace(
         hour=23, minute=59, second=59, microsecond=999000
     ).isoformat(timespec="milliseconds") + "Z"
     return start, end
