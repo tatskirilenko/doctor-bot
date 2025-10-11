@@ -60,20 +60,20 @@ async def check_and_notify(bot: Bot, chat_id: str):
         matched = [t for t in tickets if t.get("worker_id") == worker_id]
         logging.info(f"[{surname}] найдено талонов для worker_id={worker_id}: {len(matched)}")
 
-# ✅ ДОБАВЬ ЭТУ ПРОВЕРКУ
-# (например, уведомлять только о записях в ближайшие 14 дней)
-limit_date = datetime.utcnow() + timedelta(days=2)
-filtered = []
-for t in matched:
-    try:
-        t_date = datetime.strptime(t["date"], "%Y-%m-%d")
-        if t_date <= limit_date:
-            filtered.append(t)
-    except Exception as e:
-        logging.warning(f"[{surname}] ошибка парсинга даты {t['date']}: {e}")
+        # ✅ ДОБАВЬ ЭТУ ПРОВЕРКУ
+        # (например, уведомлять только о записях в ближайшие 14 дней)
+        limit_date = datetime.utcnow() + timedelta(days=2)
+        filtered = []
+        for t in matched:
+            try:
+                t_date = datetime.strptime(t["date"], "%Y-%m-%d")
+                if t_date <= limit_date:
+                    filtered.append(t)
+            except Exception as e:
+                logging.warning(f"[{surname}] ошибка парсинга даты {t['date']}: {e}")
 
-matched = filtered
-# 🔚 конец добавки
+        matched = filtered
+        # 🔚 конец добавки
 
         if not matched:
             logging.info(f"[{surname}] свободных записей нет")
