@@ -6,8 +6,8 @@ from telegram import Bot
 
 # ----- РЕДАКТИРУЙ ТУТ СПИСОК ВРАЧЕЙ -----
 DOCTORS = [
-    {"surname": "Серик", "usluga": 46},
-    # {"surname": "Кожедуб", "usluga": 46},
+    {"surname": "Прохореня", "usluga": 2},
+    {"surname": "Дегтярёв", "usluga": 22},
     # {"surname": "Сидоров", "usluga": 44},
 ]
 
@@ -62,7 +62,7 @@ async def check_and_notify(bot: Bot, chat_id: str):
 
         # ✅ ДОБАВЬ ЭТУ ПРОВЕРКУ
         # (например, уведомлять только о записях в ближайшие 14 дней)
-        limit_date = datetime.utcnow() + timedelta(days=2)
+        limit_date = datetime.utcnow() + timedelta(days=90)
         filtered = []
         for t in matched:
             try:
